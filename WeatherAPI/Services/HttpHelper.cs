@@ -5,7 +5,13 @@ namespace WeatherAPI.Services
 {
     public class HttpHelper : IHttpHelper
     {
-        public string CombineUrl(string uri, string apiGroup, string city, string unitGroup, string apiKey, string contentType)
+        public string CombineCityWeatherUrl(
+            string uri, 
+            string city,
+            string apiKey,
+            string apiGroup,
+            string unitGroup,
+            string contentType)
         {
             return $"{uri}{apiGroup}/{city}?{UrlConstants.UnitGroup}={unitGroup}&{UrlConstants.Key}={apiKey}&{UrlConstants.ContentType}={contentType}";
         }

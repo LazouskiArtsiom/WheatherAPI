@@ -5,19 +5,19 @@ namespace WeatherAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MyController : ControllerBase
+    public class WeatherController : ControllerBase
     {
         private readonly IExternalApiService _externalApiService;
 
-        public MyController(IExternalApiService externalApiService)
+        public WeatherController(IExternalApiService externalApiService)
         {
             _externalApiService = externalApiService;
         }
 
-        [HttpGet("test")]
-        public async Task<IActionResult> Test()
+        [HttpGet("city")]
+        public async Task<IActionResult> GetCityWeather([FromQuery] string city)
         {
-            var result = await _externalApiService.CallEzternalApi();
+            var result = await _externalApiService.GetCityWeather(city);
             return Ok(result);
         }
     }

@@ -3,17 +3,19 @@
     public static class UrlConstants
     {
         // Api groups
-        public static string Timeline = "/timeline";
-        public static string Forecast = "/forecast";
-        public static string History = "/history";
-        public static string HistorySummary = "/historysummary";
+        public const string Timeline = "/timeline";
+        public const string Forecast = "/forecast";
+        public const string History = "/history";
+        public const string HistorySummary = "/historysummary";
 
-        public static string UnitGroup = "/unitGroup";
-        public static string Key = "/key";
-        public static string ContentType = "/contentType";
+        public const string UnitGroup = "unitGroup";
+        public const string Key = "key";
+        public const string ContentType = "contentType";
 
-        public static string Json = "json";
-        public static string Csv = "csv";
-        public static string Excel = "xlsx";
+        public const string Metric = "metric";
+
+        public const string Json = "json";
+        public const string Csv = "csv";
+        public const string Excel = "xlsx";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using WeatherAPI.Models;
 using WeatherAPI.Services.Interfaces;
 
@@ -22,13 +23,26 @@ namespace WeatherAPI.Services
             _httpClient = httpClient;
         }
 
-        public async Task<bool> CallEzternalApi()
-        {   
-            var url = $"https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Minsk?unitGroup=metric&key={_apiKey}&contentType=json";
-            var response = await _httpClient.GetAsync(url);
-            var body = response.Content.ReadAsStringAsync();
+        public async Task<WeatherModel> GetCityWeather(string city)
+        {
+            try
+            {
+                var url = _httpHelper.CombineCityWeatherUrl(_uri, city, _apiKey);
+                var response = await _httpClient.GetAsync(url);
 
-            return true;
+                response.EnsureSuccessStatusCode();
+
+                var responseJson = await response.Content.ReadAsStringAsync();
+
+                var weatherResponse = JsonConvert.DeserializeObject<WeatherModel>(responseJson);
+
+                return weatherResponse;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching weather data: {ex.Message}");
+                throw;
+            }
         }
     }
 }

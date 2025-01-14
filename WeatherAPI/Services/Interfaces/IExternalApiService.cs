@@ -1,7 +1,9 @@
-﻿namespace WeatherAPI.Services.Interfaces
+﻿using WeatherAPI.Models;
+
+namespace WeatherAPI.Services.Interfaces
 {
     public interface IExternalApiService
     {
-        Task<bool> CallEzternalApi();
+        Task<WeatherModel> GetCityWeather(string city);
     }
 }
